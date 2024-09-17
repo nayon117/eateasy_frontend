@@ -1,5 +1,6 @@
 import landingimage from '../assets/landing.png'
 import appDownloadImg from '../assets/appDownload.png'
+import Testimonial from '@/components/Testimonial';
 
 const Home = () => {
     return (
@@ -20,6 +21,7 @@ const Home = () => {
                     <img src={appDownloadImg} alt="app download image" />
                 </div>  
             </div>
+            <Testimonial />
         </div>
     )
 }
