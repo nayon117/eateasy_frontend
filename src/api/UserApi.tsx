@@ -1,5 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react"
 import { useMutation } from "@tanstack/react-query"
+import { toast } from "sonner"
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
@@ -57,9 +58,16 @@ export const useUpdateMyUser = () =>{
         }
         return response.json()
     }
-    const { mutateAsync: updateUser, isError, isPending, isSuccess,error, reset } = useMutation({
+    const { mutateAsync: updateUser, isPending, isSuccess,error, reset } = useMutation({
         mutationFn: updateMyUserRequest
     })
+    if(isSuccess){
+        toast.success("User updated successfully")
+    }
 
-    return { updateUser, isPending, isError, isSuccess,error,reset }
+    if(error){
+        toast.error(error.toString())
+        reset()
+    }
+    return { updateUser, isPending }
 }
