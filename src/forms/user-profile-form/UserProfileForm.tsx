@@ -8,6 +8,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import LoadingButton from "@/components/LoadingButton";
@@ -25,10 +26,10 @@ type userFormData = z.infer<typeof formSchema>;
 
 type Props = {
   onSave: (userProfileData: userFormData) => void;
-  isLoading: boolean;
+  isPending: boolean;
 };
 
-const UserProfileForm = ({ onSave, isLoading }: Props) => {
+const UserProfileForm = ({ onSave,  isPending }: Props) => {
   const form = useForm<userFormData>({
     resolver: zodResolver(formSchema),
   });
@@ -63,6 +64,7 @@ const UserProfileForm = ({ onSave, isLoading }: Props) => {
               <FormControl>
                 <Input {...field} className="bg-white" />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -71,11 +73,12 @@ const UserProfileForm = ({ onSave, isLoading }: Props) => {
           control={form.control}
           name="addressLine1"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="flex-1">
               <FormLabel>AddressLine1</FormLabel>
               <FormControl>
                 <Input {...field} className="bg-white" />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -83,11 +86,12 @@ const UserProfileForm = ({ onSave, isLoading }: Props) => {
           control={form.control}
           name="city"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="flex-1">
               <FormLabel>City</FormLabel>
               <FormControl>
                 <Input {...field} className="bg-white" />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -95,18 +99,19 @@ const UserProfileForm = ({ onSave, isLoading }: Props) => {
           control={form.control}
           name="country"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="flex-1">
               <FormLabel>Country</FormLabel>
               <FormControl>
                 <Input {...field} className="bg-white" />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
         </div>
 
           {
-            isLoading ? <LoadingButton /> : <Button type="submit" className="bg-teal-500">Submit</Button>
+            isPending ? <LoadingButton /> : <Button type="submit" className="bg-teal-500">Submit</Button>
           }
 
       </form>
