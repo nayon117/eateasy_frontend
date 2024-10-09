@@ -10,6 +10,7 @@ const Hero = () => {
     },
   };
 
+
   const textVariants = {
     hidden: { y: 50, opacity: 0 },
     visible: {
@@ -70,7 +71,7 @@ const Hero = () => {
           whileHover="hover"
           whileTap="tap"
         >
-          Explore Now
+          Explore Now or never
           <FastForward className="ml-2" />
         </motion.button>
       </div>
